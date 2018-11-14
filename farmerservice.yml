@@ -13,12 +13,12 @@
       hibernate.format_sql: true
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: http://configservice:8888
     stream:
       kafka:
         binder:
-          brokers: 10.1.55.132:9092
-          zk-nodes: 10.1.55.132:2181
+          brokers: kafka:9092
+          zk-nodes: zookeeper:2181
             
       bindings:
         message-out:
@@ -29,13 +29,13 @@
           contentType: application/json
           
   zipkin:
-    base-url: http://localhost:9411
+    base-url: http://zipkinservice:9411
           
     
 eureka:  
   client:
     serviceUrl:
-      defaultZone: ${DISCOVERY_URL:http://localhost:8761}/eureka/
+      defaultZone: ${DISCOVERY_URL:http://discoveryservice:8761}/eureka/
   instance:
     leaseRenewalIntervalInSeconds: 1
     leaseExpirationDurationInSeconds: 2
